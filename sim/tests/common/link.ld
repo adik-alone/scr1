@@ -17,6 +17,7 @@ CL_SIZE = 32;
 
 SECTIONS {
 
+
   /* code segment */
   .text.init 0 : { 
     FILL(0);
@@ -31,9 +32,18 @@ SECTIONS {
     *(.text.init) 
   } >RAM
 
+  .text.start 0x200 : {
+    *(.text.start)
+  } >RAM
+
+  .text.trap 0x400 : {
+    *(.text.trap)
+  } >RAM
+
   .text  : {
     *crt.o(.text .text.*)
-    *(.text .text.*)
+    *(.text)
+    *(.text.*)
     *(sc_test_section)
     . = ALIGN(CL_SIZE);
      PROVIDE(__TEXT_END__ = .);

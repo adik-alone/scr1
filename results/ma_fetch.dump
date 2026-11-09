@@ -1,0 +1,376 @@
+
+/home/adikalone/master/SoC/scr1/build/verilator_AHB_MAX_imc_IPIC_1_TCM_1_VIRQ_1_TRACE_0/ma_fetch.elf:     file format elf32-littleriscv
+/home/adikalone/master/SoC/scr1/build/verilator_AHB_MAX_imc_IPIC_1_TCM_1_VIRQ_1_TRACE_0/ma_fetch.elf
+architecture: riscv:rv32, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x00000200
+
+Program Header:
+0x70000003 off    0x00001748 vaddr 0x00000000 paddr 0x00000000 align 2**0
+         filesz 0x0000004b memsz 0x00000000 flags r--
+    LOAD off    0x00001000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x00000748 memsz 0x00000760 flags rwx
+    LOAD off    0x00000c00 vaddr 0x0000fc00 paddr 0x0000fc00 align 2**12
+         filesz 0x00000000 memsz 0x00000400 flags rw-
+
+Sections:
+Idx Name              Size      VMA       LMA       File off  Algn  Flags
+  0 .text.init        00000100  00000000  00000000  00001000  2**0  CONTENTS, ALLOC, LOAD, CODE
+  1 .text.start       0000006c  00000200  00000200  00001200  2**0  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .text.trap        000000ae  00000400  00000400  00001400  2**6  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  3 .text             000001e0  000004c0  000004c0  000014c0  2**5  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  4 .data             00000040  000006a0  000006a0  000016a0  2**4  CONTENTS, ALLOC, LOAD, DATA
+  5 .tohost           00000048  00000700  00000700  00001700  2**6  CONTENTS, ALLOC, LOAD, DATA
+  6 .sdata            00000018  00000748  00000748  00001748  2**0  ALLOC
+  7 .tdata            00000000  00000760  00000760  00001748  2**0  CONTENTS, ALLOC, LOAD, DATA, THREAD_LOCAL
+  8 .tbss             00000000  00000760  00000760  00000000  2**0  ALLOC, THREAD_LOCAL
+  9 .bss              00000000  00000760  00000760  00001748  2**0  ALLOC
+ 10 .stack            00000400  0000fc00  0000fc00  00001c00  2**0  ALLOC
+ 11 .riscv.attributes 0000004b  00000000  00000000  00001748  2**0  CONTENTS, READONLY
+SYMBOL TABLE:
+00000000 l    d  .text.init	00000000 .text.init
+00000200 l    d  .text.start	00000000 .text.start
+00000400 l    d  .text.trap	00000000 .text.trap
+000004c0 l    d  .text	00000000 .text
+000006a0 l    d  .data	00000000 .data
+00000700 l    d  .tohost	00000000 .tohost
+00000748 l    d  .sdata	00000000 .sdata
+00000760 l    d  .tdata	00000000 .tdata
+00000760 l    d  .tbss	00000000 .tbss
+00000760 l    d  .bss	00000000 .bss
+0000fc00 l    d  .stack	00000000 .stack
+00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 l    df *ABS*	00000000 ma_fetch.o
+00000660 l       .text	00000000 sc_exit
+000006a0 l       .data	00000000 MSG
+00000400 l       .text.trap	00000000 trap_vector
+00000434 l       .text.trap	00000000 _report
+00000440 l       .text.trap	00000000 misalign_handler
+00000432 l       .text.trap	00000000 handle_exception
+00000432 l       .text.trap	00000000 other_exception
+00000448 l       .text.trap	00000000 next_iter
+00000458 l       .text.trap	00000000 break_from_loop
+000004c0 l       .text	00000000 _run_test
+000005c0 l       .text	00000000 fail
+000005d0 l       .text	00000000 pass
+0000063e l       .text	00000000 ecall
+00000400 g       *ABS*	00000000 STACK_SIZE
+00000f48 g       .sdata	00000000 __global_pointer$
+000006d0 g       .data	00000000 end_signature
+000006b0 g       .data	00000000 begin_regstate
+000006d0 g       .data	00000000 begin_signature
+00000200 g       .text.start	00000000 _start
+00000020 g       *ABS*	00000000 CL_SIZE
+000000f8 g       .text.init	00000000 SIM_STOP
+000005e2  w      .text	00000000 mtvec_handler
+00000760 g       .bss	00000000 _end
+00000740 g       .tohost	00000000 fromhost
+00000700 g       .tohost	00000000 tohost
+000000f4 g       .text.init	00000000 SIM_EXIT
+
+
+
+Disassembly of section .text.init:
+
+00000000 <SIM_EXIT-0xf4>:
+	...
+
+000000f4 <SIM_EXIT>:
+  f4:	00000013          	nop
+
+000000f8 <SIM_STOP>:
+  f8:	0000006f          	j	f8 <SIM_STOP>
+  fc:	ffff                	.insn	2, 0xffff
+  fe:	ffff                	.insn	2, 0xffff
+
+Disassembly of section .text.start:
+
+00000200 <_start>:
+ 200:	f1402573          	csrr	a0,mhartid
+ 204:	e101                	bnez	a0,204 <_start+0x4>
+ 206:	4e01                	li	t3,0
+ 208:	00000297          	auipc	t0,0x0
+ 20c:	1f828293          	addi	t0,t0,504 # 400 <STACK_SIZE>
+ 210:	30529073          	csrw	mtvec,t0
+ 214:	4505                	li	a0,1
+ 216:	057e                	slli	a0,a0,0x1f
+ 218:	00054863          	bltz	a0,228 <_start+0x28>
+ 21c:	0ff0000f          	fence
+ 220:	85f2                	mv	a1,t3
+ 222:	4501                	li	a0,0
+ 224:	00000073          	ecall
+ 228:	00000293          	li	t0,0
+ 22c:	00028f63          	beqz	t0,24a <_start+0x4a>
+ 230:	10529073          	csrw	stvec,t0
+ 234:	62ad                	lui	t0,0xb
+ 236:	10928293          	addi	t0,t0,265 # b109 <__global_pointer$+0xa1c1>
+ 23a:	30229073          	csrw	medeleg,t0
+ 23e:	30202373          	csrr	t1,medeleg
+ 242:	00628463          	beq	t0,t1,24a <_start+0x4a>
+ 246:	1ec0006f          	j	432 <handle_exception>
+ 24a:	30005073          	csrwi	mstatus,0
+ 24e:	6509                	lui	a0,0x2
+ 250:	80050513          	addi	a0,a0,-2048 # 1800 <__global_pointer$+0x8b8>
+ 254:	30052073          	csrs	mstatus,a0
+ 258:	00000297          	auipc	t0,0x0
+ 25c:	26828293          	addi	t0,t0,616 # 4c0 <_run_test>
+ 260:	34129073          	csrw	mepc,t0
+ 264:	f1402573          	csrr	a0,mhartid
+ 268:	30200073          	mret
+
+Disassembly of section .text.trap:
+
+00000400 <trap_vector>:
+ 400:	34202773          	csrr	a4,mcause
+ 404:	47a1                	li	a5,8
+ 406:	02f70763          	beq	a4,a5,434 <_report>
+ 40a:	47a5                	li	a5,9
+ 40c:	02f70463          	beq	a4,a5,434 <_report>
+ 410:	47ad                	li	a5,11
+ 412:	02f70763          	beq	a4,a5,440 <misalign_handler>
+ 416:	4781                	li	a5,0
+ 418:	02f70463          	beq	a4,a5,440 <misalign_handler>
+ 41c:	00000717          	auipc	a4,0x0
+ 420:	1c670713          	addi	a4,a4,454 # 5e2 <mtvec_handler>
+ 424:	c311                	beqz	a4,428 <trap_vector+0x28>
+ 426:	8702                	jr	a4
+ 428:	34202773          	csrr	a4,mcause
+ 42c:	00075363          	bgez	a4,432 <handle_exception>
+ 430:	a009                	j	432 <handle_exception>
+
+00000432 <handle_exception>:
+ 432:	4505                	li	a0,1
+
+00000434 <_report>:
+ 434:	22c0006f          	j	660 <sc_exit>
+ 438:	00000013          	nop
+ 43c:	00000013          	nop
+
+00000440 <misalign_handler>:
+ 440:	f0000837          	lui	a6,0xf0000
+ 444:	6a000893          	li	a7,1696
+
+00000448 <next_iter>:
+ 448:	00088783          	lb	a5,0(a7)
+ 44c:	c791                	beqz	a5,458 <break_from_loop>
+ 44e:	00f82023          	sw	a5,0(a6) # f0000000 <__global_pointer$+0xeffff0b8>
+ 452:	0885                	addi	a7,a7,1
+ 454:	ff5ff06f          	j	448 <next_iter>
+
+00000458 <break_from_loop>:
+ 458:	2080006f          	j	660 <sc_exit>
+ 45c:	00000013          	nop
+ 460:	00000013          	nop
+ 464:	00000013          	nop
+ 468:	00000013          	nop
+ 46c:	00000013          	nop
+ 470:	00000013          	nop
+ 474:	00000013          	nop
+ 478:	00000013          	nop
+ 47c:	00000013          	nop
+ 480:	0001                	nop
+ 482:	00000013          	nop
+ 486:	00000013          	nop
+ 48a:	00000013          	nop
+ 48e:	00000013          	nop
+ 492:	00000013          	nop
+ 496:	00000013          	nop
+ 49a:	00000013          	nop
+ 49e:	00000013          	nop
+ 4a2:	00000013          	nop
+ 4a6:	00000013          	nop
+ 4aa:	00000013          	nop
+
+Disassembly of section .text:
+
+000004c0 <_run_test>:
+ 4c0:	00200e13          	li	t3,2
+ 4c4:	00000313          	li	t1,0
+ 4c8:	00000297          	auipc	t0,0x0
+ 4cc:	00c28293          	addi	t0,t0,12 # 4d4 <_run_test+0x14>
+ 4d0:	00228367          	jalr	t1,2(t0)
+ 4d4:	a011                	j	4d8 <_run_test+0x18>
+ 4d6:	a019                	j	4dc <_run_test+0x1c>
+ 4d8:	0e80006f          	j	5c0 <fail>
+ 4dc:	00300e13          	li	t3,3
+ 4e0:	00000297          	auipc	t0,0x0
+ 4e4:	00c28293          	addi	t0,t0,12 # 4ec <_run_test+0x2c>
+ 4e8:	00128367          	jalr	t1,1(t0)
+ 4ec:	0080006f          	j	4f4 <_run_test+0x34>
+ 4f0:	0d00006f          	j	5c0 <fail>
+ 4f4:	00400e13          	li	t3,4
+ 4f8:	00000313          	li	t1,0
+ 4fc:	00000297          	auipc	t0,0x0
+ 500:	00c28293          	addi	t0,t0,12 # 508 <_run_test+0x48>
+ 504:	00328367          	jalr	t1,3(t0)
+ 508:	a011                	j	50c <_run_test+0x4c>
+ 50a:	a019                	j	510 <_run_test+0x50>
+ 50c:	0b40006f          	j	5c0 <fail>
+ 510:	00500e13          	li	t3,5
+ 514:	00000313          	li	t1,0
+ 518:	00000297          	auipc	t0,0x0
+ 51c:	00c28293          	addi	t0,t0,12 # 524 <_run_test+0x64>
+ 520:	0060036f          	jal	t1,526 <_run_test+0x66>
+ 524:	a011                	j	528 <_run_test+0x68>
+ 526:	a019                	j	52c <_run_test+0x6c>
+ 528:	0980006f          	j	5c0 <fail>
+ 52c:	00600e13          	li	t3,6
+ 530:	00000313          	li	t1,0
+ 534:	00000297          	auipc	t0,0x0
+ 538:	00c28293          	addi	t0,t0,12 # 540 <_run_test+0x80>
+ 53c:	00000363          	beqz	zero,542 <_run_test+0x82>
+ 540:	a011                	j	544 <_run_test+0x84>
+ 542:	a019                	j	548 <_run_test+0x88>
+ 544:	07c0006f          	j	5c0 <fail>
+ 548:	00700e13          	li	t3,7
+ 54c:	00001563          	bnez	zero,556 <_run_test+0x96>
+ 550:	00c0006f          	j	55c <_run_test+0x9c>
+ 554:	a009                	j	556 <_run_test+0x96>
+ 556:	a009                	j	558 <_run_test+0x98>
+ 558:	0680006f          	j	5c0 <fail>
+ 55c:	00800e13          	li	t3,8
+ 560:	301023f3          	csrr	t2,misa
+ 564:	0043f393          	andi	t2,t2,4
+ 568:	04038863          	beqz	t2,5b8 <_run_test+0xf8>
+ 56c:	0001                	nop
+ 56e:	30127073          	csrci	misa,4
+ 572:	0001                	nop
+ 574:	301023f3          	csrr	t2,misa
+ 578:	0043f393          	andi	t2,t2,4
+ 57c:	04038263          	beqz	t2,5c0 <fail>
+ 580:	00000297          	auipc	t0,0x0
+ 584:	03428293          	addi	t0,t0,52 # 5b4 <_run_test+0xf4>
+ 588:	ffe28293          	addi	t0,t0,-2
+ 58c:	34129073          	csrw	mepc,t0
+ 590:	30127073          	csrci	misa,4
+ 594:	301023f3          	csrr	t2,misa
+ 598:	0043f393          	andi	t2,t2,4
+ 59c:	00039e63          	bnez	t2,5b8 <_run_test+0xf8>
+ 5a0:	000023b7          	lui	t2,0x2
+ 5a4:	80038393          	addi	t2,t2,-2048 # 1800 <__global_pointer$+0x8b8>
+ 5a8:	3003a073          	csrs	mstatus,t2
+ 5ac:	30200073          	mret
+ 5b0:	00000263          	beqz	zero,5b4 <_run_test+0xf4>
+ 5b4:	30126073          	csrsi	misa,4
+ 5b8:	0180006f          	j	5d0 <pass>
+ 5bc:	01c01a63          	bne	zero,t3,5d0 <pass>
+
+000005c0 <fail>:
+ 5c0:	0ff0000f          	fence
+ 5c4:	000e0593          	mv	a1,t3
+ 5c8:	00100513          	li	a0,1
+ 5cc:	00000073          	ecall
+
+000005d0 <pass>:
+ 5d0:	0ff0000f          	fence
+ 5d4:	000e0593          	mv	a1,t3
+ 5d8:	00000513          	li	a0,0
+ 5dc:	00000073          	ecall
+ 5e0:	0001                	.insn	2, 0x0001
+
+000005e2 <mtvec_handler>:
+ 5e2:	00200513          	li	a0,2
+ 5e6:	02ae0063          	beq	t3,a0,606 <mtvec_handler+0x24>
+ 5ea:	00400513          	li	a0,4
+ 5ee:	00ae0c63          	beq	t3,a0,606 <mtvec_handler+0x24>
+ 5f2:	00500513          	li	a0,5
+ 5f6:	00ae0863          	beq	t3,a0,606 <mtvec_handler+0x24>
+ 5fa:	00600513          	li	a0,6
+ 5fe:	00ae0463          	beq	t3,a0,606 <mtvec_handler+0x24>
+ 602:	fbfff06f          	j	5c0 <fail>
+ 606:	fa031de3          	bnez	t1,5c0 <fail>
+ 60a:	00000593          	li	a1,0
+ 60e:	34202573          	csrr	a0,mcause
+ 612:	fab517e3          	bne	a0,a1,5c0 <fail>
+ 616:	341025f3          	csrr	a1,mepc
+ 61a:	00458593          	addi	a1,a1,4
+ 61e:	fab291e3          	bne	t0,a1,5c0 <fail>
+ 622:	34302573          	csrr	a0,mtval
+ 626:	00050663          	beqz	a0,632 <mtvec_handler+0x50>
+ 62a:	ffe50513          	addi	a0,a0,-2
+ 62e:	f85519e3          	bne	a0,t0,5c0 <fail>
+ 632:	00c58593          	addi	a1,a1,12
+ 636:	34159073          	csrw	mepc,a1
+ 63a:	30200073          	mret
+
+0000063e <ecall>:
+ 63e:	00000073          	ecall
+	...
+
+00000660 <sc_exit>:
+ 660:	0f400293          	li	t0,244
+ 664:	8282                	jr	t0
+ 666:	00000013          	nop
+ 66a:	00000013          	nop
+ 66e:	00000013          	nop
+ 672:	00000013          	nop
+ 676:	00000013          	nop
+ 67a:	00000013          	nop
+ 67e:	0001                	nop
+ 680:	00000013          	nop
+ 684:	00000013          	nop
+ 688:	00000013          	nop
+ 68c:	00000013          	nop
+ 690:	00000013          	nop
+ 694:	00000013          	nop
+	...
+
+Disassembly of section .data:
+
+000006a0 <MSG>:
+ 6a0:	694d                	lui	s2,0x13
+ 6a2:	696c6173          	csrrsi	sp,0x696,24
+ 6a6:	74206e67          	.insn	4, 0x74206e67
+ 6aa:	6172                	flw	ft2,28(sp)
+ 6ac:	0a70                	addi	a2,sp,284
+	...
+
+000006b0 <begin_regstate>:
+	...
+
+000006d0 <begin_signature>:
+	...
+
+Disassembly of section .tohost:
+
+00000700 <tohost>:
+	...
+
+00000740 <fromhost>:
+	...
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	4a41                	li	s4,16
+   2:	0000                	unimp
+   4:	7200                	flw	fs0,32(a2)
+   6:	7369                	lui	t1,0xffffa
+   8:	01007663          	bgeu	zero,a6,14 <CL_SIZE-0xc>
+   c:	0040                	addi	s0,sp,4
+   e:	0000                	unimp
+  10:	7205                	lui	tp,0xfffe1
+  12:	3376                	.insn	2, 0x3376
+  14:	6932                	flw	fs2,12(sp)
+  16:	7032                	flw	ft0,44(sp)
+  18:	5f31                	li	t5,-20
+  1a:	326d                	jal	fffff9c4 <__global_pointer$+0xffffea7c>
+  1c:	3070                	.insn	2, 0x3070
+  1e:	665f 7032 5f32      	.insn	6, 0x5f327032665f
+  24:	30703263          	.insn	4, 0x30703263
+  28:	7a5f 6369 7273      	.insn	6, 0x727363697a5f
+  2e:	7032                	flw	ft0,44(sp)
+  30:	5f30                	lw	a2,120(a4)
+  32:	697a                	flw	fs2,156(sp)
+  34:	6566                	flw	fa0,88(sp)
+  36:	636e                	flw	ft6,216(sp)
+  38:	6965                	lui	s2,0x19
+  3a:	7032                	flw	ft0,44(sp)
+  3c:	5f30                	lw	a2,120(a4)
+  3e:	6d7a                	flw	fs10,156(sp)
+  40:	756d                	lui	a0,0xffffb
+  42:	316c                	.insn	2, 0x316c
+  44:	3070                	.insn	2, 0x3070
+  46:	0800                	addi	s0,sp,16
+  48:	0a01                	addi	s4,s4,0
+  4a:	0b                	.byte	0x0b
